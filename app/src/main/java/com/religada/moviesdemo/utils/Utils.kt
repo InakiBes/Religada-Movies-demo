@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.text.HtmlCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.firebase.BuildConfig
 import com.religada.moviesdemo.R
 import java.text.ParseException
 import java.text.SimpleDateFormat

@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.religada.moviesdemo.R
 import com.religada.moviesdemo.databinding.ActivityMainBinding
+import com.religada.moviesdemo.navigator.Screens
 import com.religada.moviesdemo.ui.base.BaseActivity
 import com.religada.moviesdemo.ui.main.viewmodel.MainViewModel
 import com.religada.moviesdemo.utils.PrefManager
@@ -40,7 +41,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initializeViews() {
-
+        navigator.navigateTo(Screens.MAIN, null)
     }
 
     override fun onBackPressed() {

@@ -32,7 +32,7 @@ object ApiConnection{
     private fun getRetroInstanceNoAuth(): Retrofit {
         return Retrofit.Builder()
             .client(clientNoAuth)
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL_API)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(jsonConverter))
             .build()

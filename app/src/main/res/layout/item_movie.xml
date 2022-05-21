@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_item_movie"
+    android:layout_gravity="center_horizontal"
+    app:cardBackgroundColor="@color/blackLight"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/box_item_movie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_movie"
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="@id/box_item_movie"
+            app:layout_constraintTop_toTopOf="@id/box_item_movie"
+            tools:src="@drawable/fake_movie" />
+
+        <TextView
+            android:id="@+id/tv_title_movie"
+            style="@style/Paragraph"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/box_item_movie"
+            app:layout_constraintStart_toEndOf="@id/img_movie"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Título de la película" />
+
+        <TextView
+            android:id="@+id/tv_description_movie"
+            style="@style/Paragraph"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:ellipsize="end"
+            android:maxLines="5"
+            app:layout_constraintEnd_toEndOf="@id/box_item_movie"
+            app:layout_constraintStart_toEndOf="@id/img_movie"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_movie"
+            tools:text="@string/lorem_ipsum" />
+
+        <ImageView
+            android:id="@+id/ic_vote_count"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:padding="2dp"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_movie" />
+
+        <TextView
+            android:id="@+id/tv_vote_average"
+            style="@style/ParagraphS"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/ic_vote_count"
+            app:layout_constraintStart_toEndOf="@id/ic_vote_count"
+            app:layout_constraintTop_toTopOf="@id/ic_vote_count"
+            tools:text="1253 votos" />
+
+        <ImageView
+            android:id="@+id/ic_vote_average"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:padding="2dp"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintBottom_toTopOf="@id/ic_vote_count"
+            app:layout_constraintStart_toEndOf="@id/img_movie" />
+
+        <TextView
+            android:id="@+id/tv_vote_count"
+            style="@style/ParagraphS"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/ic_vote_average"
+            app:layout_constraintStart_toEndOf="@id/ic_vote_average"
+            app:layout_constraintTop_toTopOf="@id/ic_vote_average"
+            tools:text="8.9" />
+
+        <ImageView
+            android:id="@+id/ic_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:padding="8dp"
+            tools:src="@drawable/ic_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
