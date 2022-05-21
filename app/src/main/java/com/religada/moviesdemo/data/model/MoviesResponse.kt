@@ -2,7 +2,7 @@ package com.religada.moviesdemo.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class PopularMoviesResponse(
+data class MoviesResponse(
     @SerializedName("page") val page: Int = -1,
     @SerializedName("results") val movies: List<MovieResponse>,
 )

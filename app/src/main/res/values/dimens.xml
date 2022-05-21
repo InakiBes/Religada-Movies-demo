@@ -19,4 +19,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="height_item_movie">202dp</dimen>
+    <dimen name="height_search">60dp</dimen>
 </resources>

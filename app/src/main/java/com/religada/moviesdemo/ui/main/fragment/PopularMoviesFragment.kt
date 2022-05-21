@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.religada.moviesdemo.R
 import com.religada.moviesdemo.data.model.MovieResponse
 import com.religada.moviesdemo.data.repository.MovieRepositoryLocal
 import com.religada.moviesdemo.databinding.FragmentMoviesListBinding
@@ -24,7 +26,7 @@ class PopularMoviesFragment @Inject constructor(
 
     private lateinit var binding: FragmentMoviesListBinding
     private val mainViewModel: MainViewModel by activityViewModels()
-    private lateinit var adapterRecycler : RecyclerViewAdapterMovies
+    private lateinit var adapterRecycler: RecyclerViewAdapterMovies
     private var itemsList = listOf<MovieResponse>()
 
     override fun onCreateView(
@@ -33,8 +35,10 @@ class PopularMoviesFragment @Inject constructor(
     ): View {
         binding = FragmentMoviesListBinding.inflate(inflater, container, false)
 
+        setSearchView()
+        setCloseSearchButton()
         setRecyclerViewList()
-        
+
         return binding.root
     }
 
@@ -44,7 +48,7 @@ class PopularMoviesFragment @Inject constructor(
             mutableListOf(),
             navigator,
             repositoryLocal,
-        ){ movieId, isFavorite ->
+        ) { movieId, isFavorite ->
             makeFavorite(movieId, isFavorite)
         }
         val layoutManagerSessions = LinearLayoutManager(activity)
@@ -57,8 +61,8 @@ class PopularMoviesFragment @Inject constructor(
     }
 
     private fun setInitialDataOnRecyclerView() {
-        mainViewModel.getPopularMovies(){
-            if(it.isNotEmpty()) {
+        mainViewModel.getPopularMovies() {
+            if (it.isNotEmpty()) {
                 binding.recyclerViewList.isVisible = true
                 updateRecyclerViewForSearching(it)
                 if (itemsList.isEmpty())
@@ -69,7 +73,8 @@ class PopularMoviesFragment @Inject constructor(
     }
 
     private fun setAutoLoadMoreSessions(layoutManager: LinearLayoutManager) {
-        binding.recyclerViewList.addOnScrollListener(object : PaginationScrollListener( layoutManager ) {
+        binding.recyclerViewList.addOnScrollListener(object :
+            PaginationScrollListener(layoutManager) {
             override fun loadMoreItems() {
                 mainViewModel.isLoading = true
                 showProgressBar()
@@ -98,8 +103,55 @@ class PopularMoviesFragment @Inject constructor(
         }
     }
 
-    private fun makeFavorite(movie: MovieResponse, isFavorite: Boolean){
+    private fun makeFavorite(movie: MovieResponse, isFavorite: Boolean) {
         mainViewModel.makeFavorite(movie, isFavorite)
+    }
+
+    private fun setSearchView() {
+        activity?.findViewById<SearchView>(R.id.searcher)?.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    setDataOnRecyclerViewServicesBySearching(query)
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    setDataOnRecyclerViewServicesBySearching(newText)
+
+                    return true
+                }
+            }
+        )
+    }
+
+    private fun setCloseSearchButton() {
+        activity?.let {
+            val searchView = it.findViewById<SearchView>(R.id.searcher)
+            val closeBtn: View = searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
+            closeBtn.setOnClickListener {
+                searchView.setQuery("", false) // reset Query text to be empty without submition
+                searchView.isIconified = true // Replace the x icon with the search icon
+                setInitialDataOnRecyclerView()
+            }
+        }
+    }
+
+    private fun setDataOnRecyclerViewServicesBySearching(key: String?) {
+        if (key.isNullOrEmpty())
+            return
+        showProgressBar()
+        mainViewModel.getMoviesByKeyword(key) {
+            updateRvForSearching(it)
+            if (itemsList.isEmpty())
+                itemsList = it
+            hideProgressBar(it.isNotEmpty())
+        }
+    }
+
+    private fun updateRvForSearching(itemList: List<MovieResponse>) {
+        activity?.runOnUiThread {
+            adapterRecycler.setUpdatedData(itemList)
+        }
     }
 
     private fun hideProgressBar(hasMovies: Boolean) {

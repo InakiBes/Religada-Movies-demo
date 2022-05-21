@@ -1,7 +1,6 @@
 package com.religada.moviesdemo.data.remote
 
-import com.religada.moviesdemo.data.model.MovieResponse
-import com.religada.moviesdemo.data.model.PopularMoviesResponse
+import com.religada.moviesdemo.data.model.MoviesResponse
 import com.religada.moviesdemo.data.model.StandardResponse
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -19,5 +18,13 @@ interface ApiCall {
         @Query("page") page: Int,
         @Query("language") language: String,
         @Query("api_key") apiKey: String,
-    ): Response<PopularMoviesResponse>
+    ): Response<MoviesResponse>
+
+    @GET("search/movie")
+    suspend fun getMoviesByKeyword(
+        @Query("query") key: String,
+        @Query("page") page: Int,
+        @Query("language") language: String,
+        @Query("api_key") apiKey: String,
+    ): Response<MoviesResponse>
 }
