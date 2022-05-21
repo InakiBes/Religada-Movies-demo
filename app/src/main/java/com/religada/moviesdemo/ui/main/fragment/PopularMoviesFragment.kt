@@ -8,10 +8,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.religada.moviesdemo.data.mapper.MovieMapper
 import com.religada.moviesdemo.data.model.MovieResponse
 import com.religada.moviesdemo.data.repository.MovieRepositoryLocal
-import com.religada.moviesdemo.databinding.FragmentPopularMoviesBinding
+import com.religada.moviesdemo.databinding.FragmentMoviesListBinding
 import com.religada.moviesdemo.navigator.AppNavigator
 import com.religada.moviesdemo.ui.main.adapter.RecyclerViewAdapterMovies
 import com.religada.moviesdemo.ui.main.viewmodel.MainViewModel
@@ -23,7 +22,7 @@ class PopularMoviesFragment @Inject constructor(
     private val repositoryLocal: MovieRepositoryLocal
 ) : Fragment() {
 
-    private lateinit var binding: FragmentPopularMoviesBinding
+    private lateinit var binding: FragmentMoviesListBinding
     private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var adapterRecycler : RecyclerViewAdapterMovies
     private var itemsList = listOf<MovieResponse>()
@@ -32,7 +31,7 @@ class PopularMoviesFragment @Inject constructor(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPopularMoviesBinding.inflate(inflater, container, false)
+        binding = FragmentMoviesListBinding.inflate(inflater, container, false)
 
         setRecyclerViewList()
         

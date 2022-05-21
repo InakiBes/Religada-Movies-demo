@@ -2,12 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="340dp"
-    android:layout_height="wrap_content"
+    android:layout_height="240dp"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="@color/backgroundDialog"
     app:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutSent"
+        android:id="@+id/box_dialog"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,67 +17,57 @@
             style="@style/TitleH2Caps"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/big_margin"
+            android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/big_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@id/constraintLayoutSent"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayoutSent"
-            app:layout_constraintTop_toTopOf="@id/constraintLayoutSent" />
+            app:layout_constraintEnd_toEndOf="@id/box_dialog"
+            app:layout_constraintStart_toStartOf="@+id/box_dialog"
+            app:layout_constraintTop_toTopOf="@id/box_dialog"
+            tools:text="Título diálogo"/>
 
         <TextView
             android:id="@+id/tv_info"
             style="@style/Paragraph"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/big_margin"
+            android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/big_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/big_margin"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@id/constraintLayoutSent"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayoutSent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-        <TextView
-            android:id="@+id/tv_info3"
-            style="@style/ParagraphS"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/big_margin"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/big_margin"
-            android:textAlignment="center"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/constraintLayoutSent"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayoutSent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+            app:layout_constraintEnd_toEndOf="@id/box_dialog"
+            app:layout_constraintStart_toStartOf="@+id/box_dialog"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="Descripción del mensaje de aviso"/>
 
         <Button
             android:id="@+id/bt_no"
-            style="@style/ButtonStandard"
+            style="@style/ButtonStandardCancel"
             android:layout_width="135dp"
+            android:layout_height="60dp"
             android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginRight="@dimen/small_margin"
             android:layout_marginBottom="@dimen/big_margin"
+            android:layout_marginStart="@dimen/normal_margin"
             android:text="@string/cancel"
-            app:layout_constraintBottom_toBottomOf="@id/constraintLayoutSent"
+            app:layout_constraintBottom_toBottomOf="@id/box_dialog"
             app:layout_constraintEnd_toStartOf="@id/bt_yes"
-            app:layout_constraintStart_toStartOf="@id/constraintLayoutSent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_info3" />
+            app:layout_constraintStart_toStartOf="@id/box_dialog"
+            app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
         <Button
             android:id="@+id/bt_yes"
             style="@style/ButtonStandard"
             android:layout_width="135dp"
-            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_height="60dp"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/big_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
             android:text="@string/accept"
-            app:layout_constraintBottom_toBottomOf="@id/constraintLayoutSent"
-            app:layout_constraintEnd_toEndOf="@id/constraintLayoutSent"
+            app:layout_constraintBottom_toBottomOf="@id/box_dialog"
+            app:layout_constraintEnd_toEndOf="@id/box_dialog"
             app:layout_constraintStart_toEndOf="@id/bt_no"
-            app:layout_constraintTop_toBottomOf="@+id/tv_info3" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_info" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 

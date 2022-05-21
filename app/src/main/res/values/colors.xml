@@ -9,7 +9,7 @@
 
     <color name="background">#DBE3E9</color>
     <color name="backgroundLight">#F9F9F9</color>
-    <color name="backgroundDialog">@color/background</color>
+    <color name="backgroundDialog">@color/blackLight</color>
 
     <color name="title">@color/white</color>
     <color name="text">@color/white</color>

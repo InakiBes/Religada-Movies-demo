@@ -54,27 +54,24 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showDialogConfirmation(onResponse: () -> Unit) {
-        // todo ¿quitar la corrutina?
-        lifecycleScope.launch(Dispatchers.Main) {
-            val dialog = Dialog(baseContext)
-            with(dialog) {
-                requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
-                window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                setCancelable(true)
-                setContentView(R.layout.dialog_yes_no)
-            }
-            // Texts
-            dialog.findViewById<TextView>(R.id.tvTitle).setText(R.string.exit_app)
-            dialog.findViewById<TextView>(R.id.tv_info).setText(R.string.are_you_sure_exit)
-            // Buttons
-            dialog.findViewById<Button>(R.id.bt_yes).setOnClickListener {
-                dialog.dismiss()
-                onResponse()
-            }
-            dialog.findViewById<Button>(R.id.bt_no).setOnClickListener {
-                dialog.dismiss()
-            }
-            dialog.show()
+        val dialog = Dialog(baseContext)
+        with(dialog) {
+            requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setCancelable(true)
+            setContentView(R.layout.dialog_yes_no)
         }
+        // Texts
+        dialog.findViewById<TextView>(R.id.tvTitle).setText(R.string.exit_app)
+        dialog.findViewById<TextView>(R.id.tv_info).setText(R.string.are_you_sure_exit)
+        // Buttons
+        dialog.findViewById<Button>(R.id.bt_yes).setOnClickListener {
+            dialog.dismiss()
+            onResponse()
+        }
+        dialog.findViewById<Button>(R.id.bt_no).setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }

@@ -1,19 +1,21 @@
 package com.religada.moviesdemo.ui.main.viewmodel
 
-import android.graphics.Movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.religada.moviesdemo.data.local.FavoriteMovieDao
 import com.religada.moviesdemo.data.local.FavoriteMovieRoom
 import com.religada.moviesdemo.data.mapper.MovieMapper
 import com.religada.moviesdemo.data.model.MovieResponse
 import com.religada.moviesdemo.data.repository.MovieRepositoryLocal
 import com.religada.moviesdemo.data.repository.MovieRepositoryRemote
+import com.religada.moviesdemo.utils.log
 import com.religada.moviesdemo.widget.OnResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
@@ -24,6 +26,8 @@ class MainViewModel @Inject constructor(): ViewModel() {
     lateinit var movieRepositoryRemote: MovieRepositoryRemote
     @Inject
     lateinit var movieRepositoryLocal: MovieRepositoryLocal
+    @Inject
+    lateinit var favoriteMovieDao: FavoriteMovieDao
     @Inject
     lateinit var mapper: MovieMapper
 
@@ -49,14 +53,17 @@ class MainViewModel @Inject constructor(): ViewModel() {
     fun isFavorite(movieId: Int, onResponse:(Boolean)-> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             onResponse(movieRepositoryLocal.isFavorite(movieId))
-        }
+        } //todo borrar?
     }
 
     fun makeFavorite(movie: MovieResponse, isFavorite: Boolean) {
-        if(isFavorite)
+        if(isFavorite){
             deleteFavoriteById(movie.movieId)
-        else
+            refreshFavorites()
+        }else{
             addFavorite(movie)
+            refreshFavorites()
+        }
     }
 
     private fun addFavorite(movie: MovieResponse) {
@@ -67,19 +74,40 @@ class MainViewModel @Inject constructor(): ViewModel() {
         }
     }
 
-    private fun deleteFavoriteById(movieId: Int){
+    fun deleteFavoriteById(movieId: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            movieRepositoryLocal.deleteFavoriteById(movieId)
+            movieRepositoryLocal.deleteFavoriteById(movieId){
+                refreshFavorites()
+            }
         }
     }
 
+    // todo borrar
     fun getAllFavorites(onResponse:(List<FavoriteMovieRoom>)-> Unit){
-        viewModelScope.launch(Dispatchers.IO) {
-            onResponse(
-                movieRepositoryLocal.getAllFavorites()
-            )
-        }
+        onResponse(movieRepositoryLocal.getAllFavorites())
     }
 
+    fun getAllFavoritesLiveData(): LiveData<List<FavoriteMovieRoom>> {
+        viewModelScope.launch(Dispatchers.IO) {
+            var favoritesList = emptyList<FavoriteMovieRoom>()
+            try {
+                favoritesList = favoriteMovieDao.getAllFavorites()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                withContext(Dispatchers.Main) {
+                    mFavorites.value = favoritesList
+                }
+            }
+        }
+        return favorites
+    }
 
+    fun refreshFavorites() {
+        viewModelScope.launch(Dispatchers.Main) {
+            getAllFavorites(){
+                mFavorites.value = it
+            }
+        }
+    }
 }

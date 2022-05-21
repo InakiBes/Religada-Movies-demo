@@ -2,13 +2,18 @@ package com.religada.moviesdemo.data.repository
 
 import com.religada.moviesdemo.data.local.FavoriteMovieDao
 import com.religada.moviesdemo.data.local.FavoriteMovieRoom
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class MovieRepositoryLocal @Inject constructor(
     private val favoriteMovieDao: FavoriteMovieDao,
 ){
-    suspend fun getAllFavorites(): List<FavoriteMovieRoom>{
-        return favoriteMovieDao.getAllFavorites()
+
+    fun getAllFavorites(): List<FavoriteMovieRoom>{
+        return runBlocking(Dispatchers.IO) {
+            favoriteMovieDao.getAllFavorites()
+        }
     }
 
     suspend fun isFavorite(movieId: Int): Boolean {
@@ -19,7 +24,10 @@ class MovieRepositoryLocal @Inject constructor(
         favoriteMovieDao.addFavorite(movie)
     }
 
-    suspend fun deleteFavoriteById(movieId: Int){
-        favoriteMovieDao.deleteFavorite(movieId)
+    fun deleteFavoriteById(movieId: Int, onResponse:()-> Unit){
+        runBlocking(Dispatchers.IO) {
+            favoriteMovieDao.deleteFavorite(movieId)
+            onResponse()
+        }
     }
 }
