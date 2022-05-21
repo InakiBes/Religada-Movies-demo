@@ -8,7 +8,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.religada.moviesdemo.data.mapper.MovieMapper
 import com.religada.moviesdemo.data.model.MovieResponse
+import com.religada.moviesdemo.data.repository.MovieRepositoryLocal
 import com.religada.moviesdemo.databinding.FragmentPopularMoviesBinding
 import com.religada.moviesdemo.navigator.AppNavigator
 import com.religada.moviesdemo.ui.main.adapter.RecyclerViewAdapterMovies
@@ -17,7 +19,8 @@ import com.religada.moviesdemo.widget.PaginationScrollListener
 import javax.inject.Inject
 
 class PopularMoviesFragment @Inject constructor(
-    val navigator: AppNavigator,
+    private val navigator: AppNavigator,
+    private val repositoryLocal: MovieRepositoryLocal
 ) : Fragment() {
 
     private lateinit var binding: FragmentPopularMoviesBinding
@@ -41,8 +44,9 @@ class PopularMoviesFragment @Inject constructor(
         adapterRecycler = RecyclerViewAdapterMovies(
             mutableListOf(),
             navigator,
-        ){ movieId ->
-            makeFavorite(movieId)
+            repositoryLocal,
+        ){ movieId, isFavorite ->
+            makeFavorite(movieId, isFavorite)
         }
         val layoutManagerSessions = LinearLayoutManager(activity)
         binding.recyclerViewList.apply {
@@ -95,8 +99,8 @@ class PopularMoviesFragment @Inject constructor(
         }
     }
 
-    private fun makeFavorite(movieId: Int){
-
+    private fun makeFavorite(movie: MovieResponse, isFavorite: Boolean){
+        mainViewModel.makeFavorite(movie, isFavorite)
     }
 
     private fun hideProgressBar(hasMovies: Boolean) {

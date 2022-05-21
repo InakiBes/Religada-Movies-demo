@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.religada.moviesdemo.R
+import com.religada.moviesdemo.data.repository.MovieRepositoryLocal
 import com.religada.moviesdemo.ui.main.fragment.MainFragment
 import com.religada.moviesdemo.utils.PrefManager
 import com.religada.moviesdemo.utils.log
@@ -15,13 +16,14 @@ import javax.inject.Inject
 class AppNavigatorImpl @Inject constructor(
     private val activity: FragmentActivity,
     private val prefManager: PrefManager,
+    private val respositoryLocal: MovieRepositoryLocal
 ) : AppNavigator {
 
     private var currentFragment: Fragment? = null
 
     init {
         if (currentFragment == null)
-            currentFragment = MainFragment(this)
+            currentFragment = MainFragment(this, respositoryLocal)
     }
 
     override fun setCurrentFragment(fragment: Fragment) {
@@ -92,9 +94,9 @@ class AppNavigatorImpl @Inject constructor(
     private fun getFragment(screen: Screens): Fragment {
         return when (screen) {
             // Main
-            Screens.MAIN -> MainFragment(this)
+            Screens.MAIN -> MainFragment(this, respositoryLocal)
 
-            else -> MainFragment(this).also {
+            else -> MainFragment(this, respositoryLocal).also {
                 log(
                     "ERROR: $screen is not implemented in navigator"
                 )

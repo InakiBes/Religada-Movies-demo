@@ -9,7 +9,6 @@ data class PopularMoviesResponse(
 
 data class MovieResponse(
     @SerializedName("id") val movieId: Int = -1,
-    @SerializedName("genre_ids") val genreIds: List<Int>,
     @SerializedName("overview") val overview: String = "",
     @SerializedName("popularity") val popularity: Double = 0.0,
     @SerializedName("poster_path") val posterPath: String = "",

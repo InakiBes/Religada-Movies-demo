@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.religada.moviesdemo.R
+import com.religada.moviesdemo.data.repository.MovieRepositoryLocal
 import com.religada.moviesdemo.databinding.FragmentMainBinding
 import com.religada.moviesdemo.navigator.AppNavigator
 import com.religada.moviesdemo.ui.main.adapter.ViewPagerMoviesAdapter
@@ -15,7 +16,8 @@ import com.religada.moviesdemo.ui.main.viewmodel.MainViewModel
 import javax.inject.Inject
 
 class MainFragment @Inject constructor(
-    val navigator: AppNavigator,
+    private val navigator: AppNavigator,
+    private val repositoryLocal: MovieRepositoryLocal
 ) : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
@@ -40,7 +42,7 @@ class MainFragment @Inject constructor(
         val tabLayout = binding.tabLayout
 
         activity?.let {
-            val adapter = ViewPagerMoviesAdapter(childFragmentManager, lifecycle, navigator)
+            val adapter = ViewPagerMoviesAdapter(childFragmentManager, lifecycle, navigator, repositoryLocal)
             viewPager.adapter = adapter
 
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -49,5 +51,4 @@ class MainFragment @Inject constructor(
             }.attach()
         }
     }
-
 }

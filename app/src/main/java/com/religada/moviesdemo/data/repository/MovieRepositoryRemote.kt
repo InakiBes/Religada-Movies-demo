@@ -14,7 +14,7 @@ import org.json.JSONObject
 import retrofit2.Response
 import javax.inject.Inject
 
-class MovieRepository @Inject constructor(){
+class MovieRepositoryRemote @Inject constructor(){
 
     fun getPopularMovies(page: Int, language:String, onResponse: (OnResult<List<MovieResponse>>) -> Unit) {
         val apiKey = BuildConfig.API_KEY

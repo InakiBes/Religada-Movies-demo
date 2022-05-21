@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.religada.moviesdemo.data.repository.MovieRepositoryLocal
 import com.religada.moviesdemo.navigator.AppNavigator
 import com.religada.moviesdemo.ui.main.fragment.FavoritesMoviesFragment
 import com.religada.moviesdemo.ui.main.fragment.PopularMoviesFragment
@@ -12,6 +13,7 @@ class ViewPagerMoviesAdapter (
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
     val navigator: AppNavigator,
+    private val repositoryLocal: MovieRepositoryLocal
 ): FragmentStateAdapter(fragmentManager, lifecycle) {
 
     private val NUM_TABS = 2
@@ -22,7 +24,7 @@ class ViewPagerMoviesAdapter (
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> PopularMoviesFragment(navigator)
+            0 -> PopularMoviesFragment(navigator, repositoryLocal)
             else -> FavoritesMoviesFragment(navigator)
         }
     }
