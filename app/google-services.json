@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "485013590926",
+    "project_id": "movies-demo-40d6a",
+    "storage_bucket": "movies-demo-40d6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485013590926:android:594b5211e649e7a91f0adf",
+        "android_client_info": {
+          "package_name": "com.religada.moviesdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485013590926-tifjce0e4l04urb05ecg39v6gu0fag2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.religada.moviesdemo",
+            "certificate_hash": "2ca84f3a255072c4dd1f2ea6d2be6b207bc746e0"
+          }
+        },
+        {
+          "client_id": "485013590926-q3q4kank3kpidslm8ce1m9uulbc4m73d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA50AifFAE3xmeJECKuN0fQZJ0KWdNVy7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485013590926-q3q4kank3kpidslm8ce1m9uulbc4m73d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

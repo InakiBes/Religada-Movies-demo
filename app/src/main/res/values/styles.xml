@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Titles -->
+    <style name="Titles" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+    <!-- H1-->
+    <style name="TitleH1" parent="Titles">
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="TitleH1Caps" parent="TitleH1">
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="TitleBar" parent="TitleH1Caps">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/height_back_arrow</item>
+        <item name="android:layout_marginStart">@dimen/normal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/normal_margin</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+    </style>
+    <!-- H2-->
+    <style name="TitleH2" parent="Titles">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="TitleH2Caps" parent="TitleH2">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Paragraph -->
+    <style name="Paragraph" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/normal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/normal_margin</item>
+    </style>
+    <style name="ParagraphS" parent="Paragraph">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="ParagraphXXS" parent="Paragraph">
+        <item name="android:textSize">8sp</item>
+    </style>
+    <style name="ParagraphM" parent="Paragraph">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="ParagraphL" parent="Paragraph">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="ParagraphXL" parent="Paragraph">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+      <!-- Button -->
+    <style name="ButtonStandard" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="backgroundTint">@color/secondary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginStart">@dimen/medium_margin</item>
+        <item name="android:layout_marginEnd">@dimen/medium_margin</item>
+        <item name="android:layout_marginBottom">@dimen/medium_margin</item>
+    </style>
+
+    <style name="ButtonRedFullWidth" parent="ButtonStandard">
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!-- Image -->
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="strokeColor">@color/secondary</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Item Menu -->
+    <style name="ItemMenuLayout" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/height_item_menu</item>
+        <item name="android:layout_marginStart">@dimen/normal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/normal_margin</item>
+        <item name="android:layout_marginTop">@dimen/normal_margin</item>
+    </style>
+
+    <!-- Tablayout -->
+    <style name="CustomTextAppearanceTab" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+</resources>

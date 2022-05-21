@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="25dp"
+    app:cardBackgroundColor="@color/backgroundDialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutSent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ic_msg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="@dimen/normal_margin"
+            tools:src="@drawable/ic_favorites"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayoutSent"
+            app:tint="@color/secondary" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/Paragraph"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/big_margin"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="@dimen/big_margin"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@id/constraintLayoutSent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayoutSent"
+            app:layout_constraintTop_toBottomOf="@+id/ic_msg"
+            tools:text="Accíón realizada con éxito"/>
+
+        <Button
+            android:id="@+id/bt_yes"
+            style="@style/ButtonStandard"
+            android:layout_marginTop="@dimen/big_margin"
+            android:layout_marginBottom="@dimen/big_margin"
+            android:text="@string/accept"
+            app:layout_constraintBottom_toBottomOf="@id/constraintLayoutSent"
+            app:layout_constraintEnd_toEndOf="@id/constraintLayoutSent"
+            app:layout_constraintStart_toStartOf="@id/constraintLayoutSent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+

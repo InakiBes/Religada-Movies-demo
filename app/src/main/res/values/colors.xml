@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#20A1B2</color>
+    <color name="primaryLight">#96D3DB</color>
+    <color name="primaryDark">#20A1B2</color>
+    <color name="secondary">#7C61B0</color>
+    <color name="secondaryLight">#B3ADC6</color>
+    <color name="secondaryDark">#533097</color>
+
+    <color name="background">#DBE3E9</color>
+    <color name="backgroundLight">#F9F9F9</color>
+    <color name="backgroundDialog">@color/background</color>
+
+    <color name="title">@color/white</color>
+    <color name="text">@color/grayDark</color>
+
+    <color name="black">#FF000000</color>
+    <color name="blackLight">#757575</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#484848</color>
+    <color name="grayDark">#1B1A1A</color>
+
+    <!-- By default from Android -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+</resources>
