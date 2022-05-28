@@ -31,6 +31,7 @@ class MainViewModel @Inject constructor(): ViewModel() {
     @Inject
     lateinit var mapper: MovieMapper
 
+    var isSearching = false
     var isLoading = false
     var isLastPage = false
     var page = 1

@@ -54,7 +54,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showDialogConfirmation(onResponse: () -> Unit) {
-        val dialog = Dialog(baseContext)
+        val dialog = Dialog(this)
         with(dialog) {
             requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

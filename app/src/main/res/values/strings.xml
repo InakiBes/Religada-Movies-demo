@@ -8,7 +8,7 @@
     <string name="notification_channel_id_movies">Religada Movies</string>
 
     <string name="exit_app">Salir</string>
-    <string name="are_you_sure_exit">¿Está seguro de querer salir de la aplicación?</string>
+    <string name="are_you_sure_exit">¿Seguro que desea\nsalir de la aplicación?</string>
     <string name="logout">Cerrar sesión</string>
     <string name="cancel">Cancelar</string>
     <string name="accept">Aceptar</string>
